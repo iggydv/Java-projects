@@ -1,0 +1,94 @@
+public class MakeADeal
+{
+  public static void main(String[] args)
+  {
+    double N = Double.parseDouble(args[0]);
+    System.out.println("Running "+N+" simulations.");
+    
+    boolean found =false;
+    
+    for(int a = 0 ;a<N;a++)
+    {
+      int winning = (int)(Math.random()*3);
+      
+      int OpenDoor = 0;
+      int OtherDoor = 0;
+      
+      boolean Door1 = true;
+      boolean Door2 = true;
+      boolean Door3 = true;
+      
+      if(winning == 0)
+      {
+        Door1 = false;
+      }
+      else if(winning == 1)
+      {
+        Door2 = false;
+      }
+      else if(winning == 2)
+      {
+        Door3 = false;
+      }
+
+      
+      
+      System.out.println("Choose a door. 0 / 1 / 2");
+      int choice = Integer.parseInt(StdIn.readLine());
+      
+      while(found==false)
+      {
+        if(choice <= 2)
+        {
+          found=true;
+          break;
+        }
+          
+         choice = Integer.parseInt(StdIn.readLine());
+      }
+      //set door which is already chosen to false/"unavailible"
+      if(choice == 0)
+        Door1 = false;
+      if(choice == 1)
+        Door2 = false;
+      if(choice == 2)
+        Door3 = false;
+      
+      
+      //set door which is open Door to true/"empty"
+        if(Door1==true)
+        {
+          OpenDoor = 0;
+          Door1 = false;
+        }
+        else if(Door2==true)
+        {
+          OpenDoor = 1;
+          Door2 = false;
+        }
+        else if(Door3==true)
+        {
+          OpenDoor = 2;
+          Door3 = false;
+        }
+          
+      
+      //sets door which wasnt choice or opened to Other door
+        if(Door1 == true)
+          OtherDoor = 0;
+      
+      else if(Door2 == true)
+        OtherDoor = 1;
+      
+      else if(Door3 == true)
+        OtherDoor = 2;
+        
+      
+      System.out.println("Winning_door="+winning+" first_pick="+choice+" Opened_door="+OpenDoor+ " Other_choice="+OtherDoor);
+      if(choice == winning)
+       System.out.println("First Pick wins!");
+      else if(OtherDoor == winning)
+        System.out.println("Other choice wins!");
+    }
+  }
+}
