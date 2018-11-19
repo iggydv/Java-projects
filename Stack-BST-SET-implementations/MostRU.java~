@@ -1,0 +1,14 @@
+public class MostRU{
+  private Node first;
+  
+  public class Node
+  {
+    private char item;
+    private node next;
+  }
+ 
+  public MostRU{
+    first = null;
+  }
+  
+}

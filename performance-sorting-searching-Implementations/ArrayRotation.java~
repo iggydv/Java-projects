@@ -1,0 +1,49 @@
+public class ArrayRotation {
+  // Exchange items at position i and j in arr.
+  public static void exch(int[] arr, int i, int j) {
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+  
+  // Reverses the integers in the array segment starting at start
+  // and ending at end.
+  public static void reverseSection(int[] arr, int start, int end) {
+    int L = end - start;
+    for (int i = 0 ; i <= L / 2 ; i++) {
+      exch(arr, start + i, end - i);
+    }
+  }
+  
+  public static int[] rotate(int[] arr, int k) {
+    k = k % arr.length; // Make sure k is wrapped to the range 0 to arr.length - 1
+    int[] copy = new int[arr.length];
+    for (int i = 0 ; i < arr.length ; i++) copy[i] = arr[i];
+    if (arr.length < 2) return copy; // If an array has length 0 and 1, it stays the same when rotated.
+    if (k == 0) return copy; // If k == 0, the items are unmoved.
+    int pos = arr.length - k;
+    reverseSection(copy, 0, arr.length-1); // First we reverse the entire array
+    reverseSection(copy, arr.length - pos, arr.length - 1); 
+    reverseSection(copy, 0, arr.length - pos - 1);
+    return copy;
+  }
+  
+  // Demo client
+  public static void main(String args[]) {
+    int[][] demoArrays = {{},
+      {1},
+      {1,2},
+      {1,2,3},
+      {1,2,3,4}};
+    
+    for (int i = 0 ; i < demoArrays.length ; i++) {
+      for (int k = 0 ; k < demoArrays[i].length ; k++) {
+        int[] arr = rotate(demoArrays[i], k);
+        for (int n = 0 ; n < arr.length ; n++) System.out.print(arr[n] + " ");
+        System.out.println();
+      }
+      System.out.println();
+    }
+    System.out.println();
+  }
+}

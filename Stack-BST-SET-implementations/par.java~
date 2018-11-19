@@ -1,0 +1,8 @@
+public class par{
+
+  public static void main(String [] args)
+  {
+    Stack<Character> brackets = new Stack<Character>;
+    
+  }
+}
